@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.admin;
+package hhs.client;
 
 import java.time.Duration;
 import java.util.*;
@@ -23,10 +20,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.util.retry.Retry;
 
 /**
+ * Do a name search using the "HomelandsCoreClient".  The "ServiceLocatorConfig" will determine which environment will be
+ * hit.  The set-up is a bit involved, needing:
+ * <ul>
+ *   <li>A ServiceLocatorConfig</li>
+ *   <li>A ServiceLocator based on the config</li>
+ *   <li>A WebClientWrapper</li>
+ *   <li>A homelandsCoreClient using the locator, service name and web-client wrapper</li>
+ * </ul>
+ * 
  * @author wjohnson000
  *
  */
-public class TestNameHelper {
+public class TestHomelandsCoreClient {
 
     public static void main(String...args) throws Exception {
         String sessionId = "f0d56df6-d64d-4d07-80ef-2b33e98e4f55-integ";
