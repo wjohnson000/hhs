@@ -1,0 +1,18 @@
+{
+    "name": "Oxford Collection of Names",
+    "description": "Oxford Collection of First and Last Names, descriptions in English.",
+    "originLanguage": "en",
+    "availableLanguages": ["en"],
+    "visibility": "PUBLIC",
+    "types": ["NAME"],
+    "attributionURL": "https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780199656431.001.0001/oxfordhb-9780199656431-e-9",
+    "attribution": {
+        "en": "These here names come from the 'Oxford' Collection of names ..."
+    },
+    "createUserId": "wjohnson000",
+    "modifyUserId": "wjohnson000",
+    "source": "Oxford Stuff",
+    "partner": "test-partner",
+    "contractType": "LEASE",
+    "expirationDate": "2022-05-06T12:13:14.000Z"
+}
