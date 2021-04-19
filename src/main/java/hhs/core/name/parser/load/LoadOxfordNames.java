@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name.parser.load;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,6 +8,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import hhs.core.name.parser.NameDef;
+import hhs.core.name.parser.NameDefParser;
+import hhs.core.name.parser.NameDefParserJSoup;
 import hhs.utility.SimpleHttpClient;
 
 import org.apache.commons.io.IOUtils;
@@ -18,7 +18,8 @@ import org.familysearch.homelands.lib.common.model.NameType;
 import org.familysearch.homelands.lib.common.util.JsonUtility;
 
 /**
- * Look at the name files from "Oxford", list names, variants, etc ...
+ * Look at the name files from "Oxford", list names, variants, etc ...  This would create a collection if
+ * needed, and create all the "first" names.
  * 
  * @author wjohnson000
  *
@@ -48,7 +49,6 @@ public class LoadOxfordNames {
         for (Map.Entry<String, NameDef> entry : nameById.entrySet()) {
             System.out.println(entry.getKey() + "|" + entry.getValue().text + "|" + refIdToNameId.getOrDefault(entry.getKey(), ""));
         }
-//        process(LAST_FILE);
     }
 
     static void createCollectionIfNecessary() throws Exception {

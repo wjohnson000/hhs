@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name.parser;
 
 import java.io.ByteArrayInputStream;
 
@@ -11,7 +8,7 @@ import javax.xml.stream.XMLStreamReader;
 
 /**
  * Look at the name files from "Oxford", list names, variants, etc ...  The data is formated as XML with HTML tags
- * such used for links, text highlighting, etc.  This code uses DOM to parse the document.
+ * such used for links, text highlighting, etc.  <strong>This code uses SAX to parse the document.</strong>
  * 
  * The tags of interest include:
  * <ul>

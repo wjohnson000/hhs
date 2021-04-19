@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.admin.test;
 
 import java.util.List;
 
@@ -13,6 +10,8 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.S3Object;
 
 /**
+ * Test the "HasS3Client" class by doing some stuff with files in the Homelands bucket.
+ * 
  * @author wjohnson000
  *
  */

@@ -1,21 +1,21 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name;
 
 import java.util.*;
-import org.json.JSONObject;
 
 import hhs.utility.SimpleHttpClient;
 
 /**
+ * Ping the old "Discovery" service to retrieve name definitions.
+ * 
+ * <p>NOTE: this service may no longer be active!.
+ * 
  * @author wjohnson000
  *
  */
 public class PingDiscoveryNames {
 
     private static final String baseUrl = "https://beta.familysearch.org/service/discovery/name/meaning/first/";
-    private static final String authToken = "9bfb9c3b-bd02-45ec-9bd6-c9bd9cbf5a5a-beta";
+    private static final String authToken = "d553496b-29cc-4d79-81d5-768e2c3fd7af-beta";
 
     private static final Set<String> tags = new TreeSet<>();
 

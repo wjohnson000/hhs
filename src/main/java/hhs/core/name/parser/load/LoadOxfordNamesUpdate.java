@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name.parser.load;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -16,7 +13,9 @@ import org.apache.commons.io.IOUtils;
 import org.familysearch.homelands.lib.common.util.JsonUtility;
 
 /**
- * Update variant names for OXFORD data
+ * Update variant names for OXFORD data.  Some variant names have a separate, independent definition.  Once all names have
+ * been loaded, take a second pass to see if any variants of a name have a definition.  If so, associate the name-id of
+ * that name to the variant.
  * 
  * @author wjohnson000
  *

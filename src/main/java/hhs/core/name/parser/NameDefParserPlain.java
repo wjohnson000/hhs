@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name.parser;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Implement the name parser w/out any additional third-party framework.  Individual data elements are pulled apart
+ * using basic Java {@link String} class and methods.
+ * 
  * @author wjohnson000
  *
  */

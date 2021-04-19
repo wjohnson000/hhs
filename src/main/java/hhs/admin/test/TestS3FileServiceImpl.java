@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.admin.test;
 
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
@@ -14,6 +11,8 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
 /**
+ * Test the *real* {@link HasS3Client} by listing some of the files and folder in S3.
+ * 
  * @author wjohnson000
  *
  */

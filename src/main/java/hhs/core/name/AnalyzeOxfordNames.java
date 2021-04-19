@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -9,8 +6,16 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import hhs.core.name.parser.NameDef;
+import hhs.core.name.parser.NameDefParser;
+import hhs.core.name.parser.NameDefParserJSoup;
+
 /**
- * Look at the name files from "Oxford", list names, variants, etc ...
+ * Parse the FIRST and LAST name files using one of the three sample parsers. Display the details of each
+ * name based on the parser chosen.
+ * 
+ * <p>The purpose of this was to compare and contrast the results of the three parsers, and choose which
+ * parser would be used to do the *real* work.
  * 
  * @author wjohnson000
  *
@@ -36,7 +41,7 @@ public class AnalyzeOxfordNames {
 
         parser = new NameDefParserJSoup();
         process(FIRST_FILE);
-//        process(LAST_FILE);
+        process(LAST_FILE);
     }
 
     static void process(String file) throws Exception {
@@ -123,10 +128,10 @@ public class AnalyzeOxfordNames {
 
     static int compareIds(String id1, String id2) {
         int ndx1 = id1.lastIndexOf('-');
-        int ndx2 = id1.lastIndexOf('-');
+        int ndx2 = id2.lastIndexOf('-');
         try {
             int num1 = Integer.parseInt(id1.substring(ndx1+1));
-            int num2 = Integer.parseInt(id2.substring(ndx1+1));
+            int num2 = Integer.parseInt(id2.substring(ndx2+1));
             return num1 - num2;
         } catch(NumberFormatException ex) {
             return 0;

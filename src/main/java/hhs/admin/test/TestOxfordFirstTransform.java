@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.admin.test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,6 +12,8 @@ import org.familysearch.homelands.admin.parser.name.OxfordFirstNameEnParser;
 import org.familysearch.homelands.admin.parser.transform.NameToCanonicalCsvTransformer;
 
 /**
+ * Test the {@link OxfordFirstNameParser} by running it against the *real* input file.
+ * 
  * @author wjohnson000
  *
  */

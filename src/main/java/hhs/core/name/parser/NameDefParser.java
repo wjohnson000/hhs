@@ -1,7 +1,4 @@
-/**
- * © 2018 by Intellectual Reserve, Inc. All rights reserved.
- */
-package std.wlj.hhs.name;
+package hhs.core.name.parser;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,6 +8,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 /**
+ * Base class for all parsers.  In addition to the common helper methods, it defines a single method that will take
+ * a chunk of XML and return the {@link NameDef} derived from it.
+ * 
+ * <p>NOTE: this works great for the Oxford FIRST and LAST name parsers, but would not work for the other name
+ * collections, nor the AAM or Discovery data, etc.
+ * 
  * @author wjohnson000
  *
  */
