@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import hhs.core.name.parser.NameDef;
-import hhs.core.name.parser.NameDefParser;
-import hhs.core.name.parser.NameDefParserJSoup;
+import hhs.admin.name.parser.NameDef;
+import hhs.admin.name.parser.NameDefParser;
+import hhs.admin.name.parser.NameDefParserJSoup;
 import hhs.utility.SimpleHttpClient;
 
 import org.apache.commons.io.IOUtils;

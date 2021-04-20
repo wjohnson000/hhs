@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui.model;
+package hhs.zzz.test.ui.model;
 
 import java.util.ArrayList;
 import java.util.List;

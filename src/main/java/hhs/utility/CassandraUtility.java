@@ -28,7 +28,7 @@ public class CassandraUtility {
     public static void executeBatch(CqlSession cqlSession, List<String> statements, int batchSize) {
         for (int i=0;  i<statements.size();  i+=batchSize) {
             int start = i;
-            int end   = Math.min(statements.size(), i+49);
+            int end   = Math.min(statements.size(), i+batchSize-1);
             List<String> deleteChunk = statements.subList(start, end);
             
             System.out.println("... execute from " + start + " to " + end + " --> " + deleteChunk.size());

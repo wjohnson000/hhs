@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui.client;
+package hhs.zzz.test.ui.client;
 
 import java.time.Duration;
 

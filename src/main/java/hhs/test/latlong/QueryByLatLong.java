@@ -9,7 +9,11 @@ import hhs.utility.SessionUtilityAWS;
 
 /**
  * Run a bunch of queries against the Cassandra database (after running {@link LoadLatLongValues} to load the data) to see
- * what you can see.
+ * what you can see.  For more information, see the Confluence page:
+ * <br>https://fhconfluence.churchofjesuschrist.org/pages/viewpage.action?pageId=188296164
+ * 
+ * <p>NOTE: the pipe (|) delimiter in the Solr query is an artificial value.  It will be replaced by a double-quote (") before
+ * the query actually happens!
  * 
  * @author wjohnson000
  *

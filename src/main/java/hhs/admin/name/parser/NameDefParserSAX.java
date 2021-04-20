@@ -1,4 +1,4 @@
-package hhs.core.name.parser;
+package hhs.admin.name.parser;
 
 import java.io.ByteArrayInputStream;
 

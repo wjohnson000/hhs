@@ -1,4 +1,4 @@
-package hhs.core.name;
+package hhs.admin.name;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -6,9 +6,9 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import hhs.core.name.parser.NameDef;
-import hhs.core.name.parser.NameDefParser;
-import hhs.core.name.parser.NameDefParserJSoup;
+import hhs.admin.name.parser.NameDef;
+import hhs.admin.name.parser.NameDefParser;
+import hhs.admin.name.parser.NameDefParserJSoup;
 
 /**
  * Parse the FIRST and LAST name files using one of the three sample parsers. Display the details of each

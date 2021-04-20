@@ -1,4 +1,4 @@
-package hhs.core.name;
+package hhs.admin.name;
 
 import java.util.*;
 

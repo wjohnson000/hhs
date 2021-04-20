@@ -14,7 +14,7 @@ import com.datastax.oss.driver.api.core.config.DefaultDriverOption;
 import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
 
 /**
- * Connect to the local Cassandra (DataStax DSE) running in Docker.  NOTE: this utility class prompts the user
+ * Connect to the DEV Cassandra (DataStax DSE) running in Docker.  NOTE: this utility class prompts the user
  * for the database password.  Thus no password is visible in the GIT project!
  * 
  * @author wjohnson000

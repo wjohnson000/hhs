@@ -38,7 +38,7 @@ import reactor.util.retry.Retry;
  * @author wjohnson000
  *
  */
-public class TestSearchService {
+public class TestItemServiceSearch {
 
     public static void main(String...args) throws Exception {
         CqlSession   cqlSession = SessionUtilityAWS.connect();

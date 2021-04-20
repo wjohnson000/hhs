@@ -13,7 +13,7 @@ import hhs.utility.SessionUtilityAWS;
 
 /**
  * Delete all quizzes that were created during acceptance tests, but not correctly cleaned up.  The test quizzes can
- * be identified by one of the tags listed below.  NOTE: it would be preferable if all "test" quizzes has a tag that
+ * be identified by one of the tags listed below.  NOTE: it would be preferable if all "test" quizzes had a tag that
  * contained the word "test" in it.  Shame on "upda-ted" and "usopenmenschampion"!.
  * 
  * @author wjohnson000

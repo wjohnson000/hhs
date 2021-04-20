@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui;
+package hhs.zzz.test.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

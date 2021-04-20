@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui.helper;
+package hhs.zzz.test.ui.helper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +16,7 @@ import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
-import std.wlj.hhs.admin.ui.model.*;
+import hhs.zzz.test.ui.model.*;
 
 /**
  * @author wjohnson000
@@ -87,8 +87,11 @@ public class S3Helper {
                 // Create the collection, if necessary
                 if (chunks.length > 1) {
                     if (collNode == null  ||  ! collNode.getId().equalsIgnoreCase(chunks[1])) {
+                        System.out.println("  new coll: " + chunks[1]);
                         collNode = new FolderNode(FolderType.COLLECTION, chunks[1], "");
                         folderDetails.add(collNode);
+                        importNode = null;
+                        stepNode = null;
                     }
                 }
 
@@ -97,6 +100,7 @@ public class S3Helper {
                     if (importNode == null  ||  ! importNode.getId().equalsIgnoreCase(chunks[2])) {
                         importNode = new FolderNode(FolderType.IMPORT, chunks[2], "");
                         collNode.addChild(importNode);
+                        stepNode = null;
                     }
                 }
 

@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui;
+package hhs.zzz.test.ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,15 +20,15 @@ import javax.swing.tree.TreePath;
 
 import org.apache.commons.io.FileUtils;
 
-import std.wlj.hhs.admin.ui.client.AdminClient;
-import std.wlj.hhs.admin.ui.component.S3TreeCellRenderer;
-import std.wlj.hhs.admin.ui.helper.AppConfiguration;
-import std.wlj.hhs.admin.ui.helper.ConfigurationDialog;
-import std.wlj.hhs.admin.ui.helper.FontChooserDialog;
-import std.wlj.hhs.admin.ui.helper.S3Helper;
-import std.wlj.hhs.admin.ui.model.CollectionTreeModel;
-import std.wlj.hhs.admin.ui.model.FolderNode;
-import std.wlj.hhs.admin.ui.model.FolderType;
+import hhs.zzz.test.ui.client.AdminClient;
+import hhs.zzz.test.ui.component.S3TreeCellRenderer;
+import hhs.zzz.test.ui.helper.AppConfiguration;
+import hhs.zzz.test.ui.helper.ConfigurationDialog;
+import hhs.zzz.test.ui.helper.FontChooserDialog;
+import hhs.zzz.test.ui.helper.S3Helper;
+import hhs.zzz.test.ui.model.CollectionTreeModel;
+import hhs.zzz.test.ui.model.FolderNode;
+import hhs.zzz.test.ui.model.FolderType;
 
 /**
  * @author wjohnson000
@@ -108,8 +108,8 @@ public class AdminUI extends JFrame {
 
     protected void setupS3Tree() {
         s3Helper = new S3Helper();
-//        List<FolderNode> s3Nodes = s3Helper.getDetails();
-        List<FolderNode> s3Nodes = s3Helper.getDetailsSaved();
+        List<FolderNode> s3Nodes = s3Helper.getDetails();
+//        List<FolderNode> s3Nodes = s3Helper.getDetailsSaved();
         treeModel = new CollectionTreeModel(s3Nodes);
         s3Tree = new JTree(treeModel);
         s3Tree.setCellRenderer(new S3TreeCellRenderer());
@@ -129,7 +129,8 @@ public class AdminUI extends JFrame {
     }
 
     protected void downloadFile() {
-        TreePath[] paths = s3Tree.getSelectionPaths();        for (TreePath path : paths) {
+        TreePath[] paths = s3Tree.getSelectionPaths();
+        for (TreePath path : paths) {
             if (path.getLastPathComponent() instanceof FolderNode) {
                 FolderNode folder = (FolderNode)path.getLastPathComponent();
                 if (folder.getType() == FolderType.FILE) {

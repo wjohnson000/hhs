@@ -1,14 +1,14 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui.component;
+package hhs.zzz.test.ui.component;
 
 import java.awt.Component;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import std.wlj.hhs.admin.ui.model.FolderNode;
-import std.wlj.hhs.admin.ui.model.FolderType;
+import hhs.zzz.test.ui.model.FolderNode;
+import hhs.zzz.test.ui.model.FolderType;
 
 /**
  * @author wjohnson000

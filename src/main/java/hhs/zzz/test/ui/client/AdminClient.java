@@ -1,7 +1,7 @@
 /**
  * © 2018 by Intellectual Reserve, Inc. All rights reserved.
  */
-package std.wlj.hhs.admin.ui.client;
+package hhs.zzz.test.ui.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import std.wlj.hhs.admin.ui.model.FolderNode;
-import std.wlj.hhs.admin.ui.model.FolderType;
+import hhs.zzz.test.ui.model.FolderNode;
+import hhs.zzz.test.ui.model.FolderType;
 
 /**
  * @author wjohnson000

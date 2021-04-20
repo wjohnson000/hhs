@@ -26,6 +26,7 @@ public class RunS3CollectionDeleteAll {
 
         "MMMS-8LV",    // Quizzes
         "MMMQ-BKC",    // Timeline data
+        "MMMQ-171",    // ROC Names, First and Last
         "MMMS-MRM",    // Load Test
         "MMM3-BVY",    // Testing, API development
     };
