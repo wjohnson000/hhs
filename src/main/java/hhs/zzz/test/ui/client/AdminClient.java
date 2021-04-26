@@ -79,9 +79,33 @@ public final class AdminClient {
             return ids;
         } catch(Exception ex) {
             System.out.println("OOPS: " + ex);
+            return Collections.emptyList();
+        }
+    }
+
+    public static boolean deleteFolder(FolderNode file, String sessionId, boolean isProd) {
+        String[] chunks = getFileParts(file);
+        if (chunks == null) {
+            return false;
         }
 
-        return Collections.emptyList();
+        boolean delOK = false;
+        try {
+            List<String> stepIds = getStepId(file, sessionId, isProd);
+            System.out.println("Steps: " + stepIds);
+            for (String stepId : stepIds) {
+                String url = makeUrl(isProd ? PROD_BASE_URL : DEV_BASE_URL, "collection", chunks[1], "import", chunks[2], "step", stepId, "file", chunks[4]);
+                System.out.println("URL: " + url);
+                ClientResponse response = deleteResponse(url, sessionId, MediaType.APPLICATION_JSON);
+                delOK |= response.statusCode().is2xxSuccessful();
+            }
+        } catch(Exception ex) {
+            System.out.println("OOPS: " + ex);
+            ex.printStackTrace();
+            return false;
+        }
+
+        return delOK;
     }
 
     static String[] getFileParts(FolderNode file) {
@@ -100,6 +124,16 @@ public final class AdminClient {
     static ClientResponse getResponse(String url, String sessionId, MediaType mediaType) {
         WebClient client = WebClientHelper.getClient(); 
         return client.get()
+                     .uri(url)
+                     .accept(mediaType)
+                     .headers(addHeaders(Collections.singletonMap("Authorization", "Bearer " + sessionId)))
+                     .exchange()
+                     .block();
+    }
+
+    static ClientResponse deleteResponse(String url, String sessionId, MediaType mediaType) {
+        WebClient client = WebClientHelper.getClient(); 
+        return client.delete()
                      .uri(url)
                      .accept(mediaType)
                      .headers(addHeaders(Collections.singletonMap("Authorization", "Bearer " + sessionId)))

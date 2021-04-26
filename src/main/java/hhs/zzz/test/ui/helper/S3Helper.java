@@ -8,10 +8,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.io.IOUtils;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -42,22 +45,38 @@ public class S3Helper {
         boolean hasMore = true;
         List<String> folderDetails = new ArrayList<>();
 
-        ObjectListing objListing = s3Client.listObjects(ListRequest);
-        while (hasMore) {
-            for (S3ObjectSummary fileSummary : objListing.getObjectSummaries()) {
-                System.out.println(fileSummary.getKey());
-                folderDetails.add(fileSummary.getKey());
+        try {
+            ObjectListing objListing = s3Client.listObjects(ListRequest);
+            while (hasMore) {
+                for (S3ObjectSummary fileSummary : objListing.getObjectSummaries()) {
+                    System.out.println(fileSummary.getKey());
+                    folderDetails.add(fileSummary.getKey());
+                }
+                
+                if (objListing.getNextMarker() == null  ||  objListing.getObjectSummaries().isEmpty()) {
+                    hasMore = false;
+                } else {
+                    ListRequest.setMarker(objListing.getNextMarker());
+                    objListing = s3Client.listObjects(ListRequest);
+                }
             }
-
-            if (objListing.getNextMarker() == null  ||  objListing.getObjectSummaries().isEmpty()) {
-                hasMore = false;
-            } else {
-                ListRequest.setMarker(objListing.getNextMarker());
-                objListing = s3Client.listObjects(ListRequest);
-            }
+        } catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Unable to read S3 data: " + ex.getMessage());
         }
 
         return getDetails(folderDetails);
+    }
+
+    public boolean deleteFile(FolderNode file) {
+        try {
+            if (file.getType() == FolderType.FILE) {
+                DeleteObjectRequest request = new DeleteObjectRequest(bucketName, file.getPath());
+                s3Client.deleteObject(request);
+            }
+        } catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Unable to delete S3 data: " + ex.getMessage());
+        }
+        return true;
     }
 
     public List<FolderNode> getDetailsSaved() {
@@ -87,7 +106,6 @@ public class S3Helper {
                 // Create the collection, if necessary
                 if (chunks.length > 1) {
                     if (collNode == null  ||  ! collNode.getId().equalsIgnoreCase(chunks[1])) {
-                        System.out.println("  new coll: " + chunks[1]);
                         collNode = new FolderNode(FolderType.COLLECTION, chunks[1], "");
                         folderDetails.add(collNode);
                         importNode = null;

@@ -6,6 +6,7 @@ package hhs.zzz.test.ui;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -41,12 +42,14 @@ public class AdminUI extends JFrame {
     S3Helper s3Helper = new S3Helper();
 
     private JMenuBar  mainMenuBar = new JMenuBar();
-    private JMenu     fileMenu = new JMenu("File");
-    private JMenuItem quitItem = new JMenuItem("Quit");
-    private JMenuItem confItem = new JMenuItem("Config");
-    private JMenu     editMenu = new JMenu("Edit");
-    private JMenuItem fontItem = new JMenuItem("Font");
-    private JMenuItem downItem = new JMenuItem("Download");
+    private JMenu     fileMenu    = new JMenu("File");
+    private JMenuItem quitItem    = new JMenuItem("Quit");
+    private JMenuItem confItem    = new JMenuItem("Config");
+    private JMenu     editMenu    = new JMenu("Edit");
+    private JMenuItem fontItem    = new JMenuItem("Font");
+    private JMenuItem downItem    = new JMenuItem("Download");
+    private JMenuItem deleItem    = new JMenuItem("Delete");
+    private JMenuItem deleS3Item  = new JMenuItem("Delete [S3]");
 
     private JPanel contentPane;
     private JTree  s3Tree;
@@ -99,17 +102,21 @@ public class AdminUI extends JFrame {
         fileMenu.add(quitItem);
         editMenu.add(fontItem);
         editMenu.add(downItem);
+        editMenu.add(deleItem);
+        editMenu.add(deleS3Item);
 
         confItem.addActionListener(ae -> setConfiguration());
         quitItem.addActionListener(ae -> quitApp());
         fontItem.addActionListener(ae -> chooseFont());
         downItem.addActionListener(ae -> downloadFile());
+        deleItem.addActionListener(ae -> deleteFile());
+        deleS3Item.addActionListener(ae -> deleteFileS3());
     }
 
     protected void setupS3Tree() {
         s3Helper = new S3Helper();
         List<FolderNode> s3Nodes = s3Helper.getDetails();
-//        List<FolderNode> s3Nodes = s3Helper.getDetailsSaved();
+//        List<FolderNode> s3Nodes = s3Helper.getDetailsSaved();  // Pulls from a hard-coded list of keys
         treeModel = new CollectionTreeModel(s3Nodes);
         s3Tree = new JTree(treeModel);
         s3Tree.setCellRenderer(new S3TreeCellRenderer());
@@ -134,7 +141,7 @@ public class AdminUI extends JFrame {
             if (path.getLastPathComponent() instanceof FolderNode) {
                 FolderNode folder = (FolderNode)path.getLastPathComponent();
                 if (folder.getType() == FolderType.FILE) {
-                    byte[] contents = AdminClient.readFile(folder, AppConfiguration.getSessionId(), false);
+                    byte[] contents = AdminClient.readFile(folder, AppConfiguration.getSessionId(), AppConfiguration.isProd());
                     if (contents == null) {
                         System.out.println("No File Contents!!");
                     } else {
@@ -154,15 +161,53 @@ public class AdminUI extends JFrame {
         }
     }
 
+    protected void deleteFile() {
+        TreePath[] paths = s3Tree.getSelectionPaths();
+        for (TreePath path : paths) {
+            if (path.getLastPathComponent() instanceof FolderNode) {
+                FolderNode folder = (FolderNode)path.getLastPathComponent();
+                List<FolderNode> allFolders = getChildren(folder);
+                allFolders.forEach(ff -> AdminClient.deleteFolder(ff, AppConfiguration.getSessionId(), AppConfiguration.isProd()));
+                CollectionTreeModel model = (CollectionTreeModel)s3Tree.getModel();
+                model.removeFolder(folder);
+            }
+        }
+    }
+
+    protected void deleteFileS3() {
+        TreePath[] paths = s3Tree.getSelectionPaths();
+        for (TreePath path : paths) {
+            if (path.getLastPathComponent() instanceof FolderNode) {
+                FolderNode folder = (FolderNode)path.getLastPathComponent();
+                List<FolderNode> allFolders = getChildren(folder);
+                allFolders.forEach(ff -> s3Helper.deleteFile(ff));
+                CollectionTreeModel model = (CollectionTreeModel)s3Tree.getModel();
+                model.removeFolder(folder);
+            }
+        }
+    }
+
+    protected List<FolderNode> getChildren(FolderNode folder) {
+        List<FolderNode> allFolders = new ArrayList<>();
+
+        allFolders.add(folder);
+        folder.getChildren().forEach(child -> allFolders.addAll(getChildren(child)));
+
+        return allFolders;
+    }
+
     protected void setFontAll(Font newFont) {
         if (newFont != null) {
-            mainMenuBar.setFont(newFont);
-            fileMenu.setFont(newFont);
-            confItem.setFont(newFont);
-            quitItem.setFont(newFont);
-            editMenu.setFont(newFont);
-            fontItem.setFont(newFont);
-            downItem.setFont(newFont);
+            Font boldFont = new Font(newFont.getName(), Font.BOLD, newFont.getSize());
+            mainMenuBar.setFont(boldFont);
+            fileMenu.setFont(boldFont);
+            confItem.setFont(boldFont);
+            quitItem.setFont(boldFont);
+            editMenu.setFont(boldFont);
+            fontItem.setFont(boldFont);
+            downItem.setFont(boldFont);
+            deleItem.setFont(boldFont);
+            deleS3Item.setFont(boldFont);
             s3Tree.setFont(newFont);
             statusBar.setFont(newFont);
         }

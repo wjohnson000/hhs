@@ -3,8 +3,10 @@
  */
 package hhs.zzz.test.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -16,6 +18,8 @@ import javax.swing.tree.TreePath;
 public class CollectionTreeModel implements TreeModel {
 
     private FolderNode root = new FolderNode(FolderType.ROOT, "S3-ROOT", "");
+
+    private List<TreeModelListener> listeners = new ArrayList<>();
 
     public CollectionTreeModel(List<FolderNode> model) {
         model.stream().forEach(root::addChild);
@@ -60,11 +64,41 @@ public class CollectionTreeModel implements TreeModel {
 
     @Override
     public void addTreeModelListener(TreeModelListener l) {
+        listeners.add(l);
     }
 
     @Override
     public void removeTreeModelListener(TreeModelListener l) {
+        listeners.remove(l);
     }
 
-    
+    public void removeFolder(FolderNode model) {
+        FolderNode parent = findParent(model, root);
+        if (parent != null) {
+            parent.getChildren().remove(model);
+            fireTreeStructureChanged();
+        }
+    }
+
+    public FolderNode findParent(FolderNode model, FolderNode startHere) {
+        if (startHere.getChildren().contains(model)) {
+            return startHere;
+        } else {
+            for (FolderNode child : startHere.getChildren()) {
+                FolderNode parent = findParent(model, child);
+                if (parent != null) {
+                    return parent;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    protected void fireTreeStructureChanged() {
+        TreeModelEvent ev = new TreeModelEvent(this, new Object[] { root });
+        for (TreeModelListener tml : listeners) {
+            tml.treeStructureChanged(ev);
+        }
+    }
 }
