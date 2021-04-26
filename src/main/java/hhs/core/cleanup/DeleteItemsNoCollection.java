@@ -9,7 +9,7 @@ import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.internal.core.cql.PagingIterableSpliterator;
 
 import hhs.utility.CassandraUtility;
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Delete all items that are NOT associated with any collection.  This uses the "item_search" table, and
@@ -29,7 +29,7 @@ public class DeleteItemsNoCollection {
     final static Set<String> collectionIds = new TreeSet<>();
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         collectionIds.addAll(getAllCollections(cqlSession));

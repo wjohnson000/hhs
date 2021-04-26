@@ -7,7 +7,7 @@ import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * List details about all collections in DEV.  This does a Cassandra query.
@@ -18,7 +18,7 @@ import hhs.utility.SessionUtilityAWS;
 public class ListCollections {
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         ResultSet rset = cqlSession.execute("SELECT * FROM hhs.collectiondata LIMIT 500");

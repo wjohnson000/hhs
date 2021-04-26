@@ -29,7 +29,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 import reactor.util.retry.Retry;
 
 /**
@@ -41,7 +41,7 @@ import reactor.util.retry.Retry;
 public class TestItemServiceSearch {
 
     public static void main(String...args) throws Exception {
-        CqlSession   cqlSession = SessionUtilityAWS.connect();
+        CqlSession   cqlSession = SessionUtilityAwsDev.connect();
         CassandraOps cassandraOps = new CassandraOps(cqlSession);
         System.out.println("OPS: " + cassandraOps);
 

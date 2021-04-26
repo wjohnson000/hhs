@@ -7,7 +7,7 @@ import java.util.*;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import hhs.utility.CassandraUtility;
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Execute CQL statements (such as a bunch of "DELETE" commands) from a file.  The statements are batched in groups
@@ -19,7 +19,7 @@ import hhs.utility.SessionUtilityAWS;
 public class ExecuteCQLFromFile {
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         executeFromFile(cqlSession, "C:/temp/dev-delete-MMM3-G4B.cql");

@@ -9,7 +9,7 @@ import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.internal.core.cql.PagingIterableSpliterator;
 
 import hhs.utility.CassandraUtility;
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Delete all quizzes that were created during acceptance tests, but not correctly cleaned up.  The test quizzes can
@@ -51,7 +51,7 @@ public class DeleteTestQuizzesAndAnswers {
     }
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         Set<String> quizIds = getAllQuizzes(cqlSession);

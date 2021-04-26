@@ -13,7 +13,7 @@ import com.datastax.oss.driver.api.core.cql.BatchableStatement;
 import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.SimpleStatementBuilder;
 
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Load a bunch of LAT/LONG values into the "hhs.rep_location_search" table.  There are four sets of data
@@ -34,7 +34,7 @@ import hhs.utility.SessionUtilityAWS;
 public class LoadLatLongValues {
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         List<String> insertStmts = new ArrayList<>(LatLongConstants.INSERT_REPS);

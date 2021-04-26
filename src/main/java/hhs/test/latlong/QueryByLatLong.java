@@ -5,7 +5,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Run a bunch of queries against the Cassandra database (after running {@link LoadLatLongValues} to load the data) to see
@@ -33,7 +33,7 @@ public class QueryByLatLong {
     };
 
     public static void main(String...args) {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         boolean more = true;

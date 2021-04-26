@@ -9,7 +9,7 @@ import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.internal.core.cql.PagingIterableSpliterator;
 
 import hhs.utility.CassandraUtility;
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 
 /**
  * Delete all items associated with a specific collection.
@@ -40,7 +40,7 @@ public class DeleteItemsFromCollection {
     static int count = 0;
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         List<String> deleteStmts = getDeleteStmts(cqlSession);

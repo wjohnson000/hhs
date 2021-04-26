@@ -10,7 +10,7 @@ import com.datastax.oss.driver.internal.core.cql.PagingIterableSpliterator;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import hhs.utility.CassandraUtility;
-import hhs.utility.SessionUtilityAWS;
+import hhs.utility.SessionUtilityAwsDev;
 import org.familysearch.homelands.lib.common.util.JsonUtility;
 
 /**
@@ -41,7 +41,7 @@ public class DeleteCollectionAndItems {
     static int count = 0;
 
     public static void main(String...args) throws Exception {
-        CqlSession cqlSession = SessionUtilityAWS.connect();
+        CqlSession cqlSession = SessionUtilityAwsDev.connect();
         System.out.println("SESS: " + cqlSession);
 
         // Read in the list of collections
