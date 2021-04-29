@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.familysearch.homelands.lib.common.util.WebResponse;
 import org.familysearch.homelands.lib.common.web.client.PlaceServiceClient;
 import org.familysearch.homelands.lib.common.web.client.PlaceServiceClientImpl;
 import org.familysearch.homelands.lib.common.web.client.WebClientWrapper;
-import org.familysearch.homelands.lib.common.web.client.WebResponse;
 import org.familysearch.homelands.lib.common.web.util.PlaceClientHelper;
 import org.familysearch.paas.binding.register.Environment;
 import org.familysearch.paas.binding.register.Region;
