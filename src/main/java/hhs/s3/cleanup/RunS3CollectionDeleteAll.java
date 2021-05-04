@@ -19,14 +19,15 @@ public class RunS3CollectionDeleteAll {
 
         "MMM9-X78",    // Oxford Given
         "MMM9-FRZ",    // Oxford Surnames
-        "MMM9-X7D",    // ROC First and Last
         "MMM9-DFC",    // French Geneanet
-        "MMMS-7HK",    // ROC Praenominia
         "MMM3-G4V",    // AAM Trending
+        "MMMQ-BKC",    // Timeline data
+
+        "MMM9-X7D",    // ROC First and Last
+        "MMMS-7HK",    // ROC Praenominia
+        "MMMQ-171",    // ROC Names, First and Last
 
         "MMMS-8LV",    // Quizzes
-        "MMMQ-BKC",    // Timeline data
-        "MMMQ-171",    // ROC Names, First and Last
         "MMMS-MRM",    // Load Test
         "MMM3-BVY",    // Testing, API development
     };

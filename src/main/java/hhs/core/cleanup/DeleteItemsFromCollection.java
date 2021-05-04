@@ -31,7 +31,7 @@ import hhs.utility.SessionUtilityAwsDev;
  */
 public class DeleteItemsFromCollection {
 
-    final static String      collection    = "MMMS-8LV";
+    final static String      collection    = "MMMQ-YZJ";
     final static String      selectItemAll = "SELECT * FROM hhs.item";
     final static String      deleteItem1   = "DELETE FROM hhs.item WHERE id = '%s' AND type = '%s'";
     final static String      deleteItem2   = "DELETE FROM hhs.item_search WHERE itemId = '%s'";

@@ -3,7 +3,9 @@ package hhs.utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
@@ -127,11 +129,15 @@ public class SimpleHttpClient {
             HttpPost httpPost = new HttpPost(url);
             httpPost.addHeader("Accept", "application/json");
             headers.entrySet().forEach(hdr -> httpPost.addHeader(hdr.getKey(), hdr.getValue()));
-            StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
-            httpPost.setEntity(entity);
+            if (body != null) {
+                StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
+                httpPost.setEntity(entity);
+            }
 
             try (CloseableHttpResponse response = client.execute(httpPost)) {
                 Header header = response.getFirstHeader("LOCATION");
+                System.out.println("STTS: " + response.getStatusLine());
+                System.out.println("HDRS: " + Arrays.stream(response.getAllHeaders()).map(hdr -> hdr.toString()).collect(Collectors.joining(" | ")));
                 return (header == null) ? null : header.getValue();
             }
         } catch (IOException ex) {

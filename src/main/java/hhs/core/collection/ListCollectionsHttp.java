@@ -26,7 +26,7 @@ public class ListCollectionsHttp {
     protected static final String DEV_URL  = "http://core.homelands.service.dev.us-east-1.dev.fslocal.org";
 
     public static void main(String...args) throws Exception {
-        String json = SimpleHttpClient.doGetJSON(PROD_URL + "/collection", Collections.singletonMap("Accept-Language", "en"));
+        String json = SimpleHttpClient.doGetJSON(DEV_URL + "/collection", Collections.singletonMap("Accept-Language", "en"));
         JsonNode collNode = JsonUtility.parseJson(json);
         List<JsonNode> colls = JsonUtility.getArrayValueAsNodes(collNode, "collections");
         colls.forEach(ListCollectionsHttp::printCollData);

@@ -23,7 +23,7 @@ import hhs.utility.SimpleHttpClient;
 public class DeleteNameCollectionHttp {
 
     private static final String BASE_URL = "http://core.homelands.service.dev.us-east-1.dev.fslocal.org";
-    private static final String authToken = "49d49034-17c4-49ec-8fe2-99c216dab68d-integ";
+    private static final String authToken = "377839d3-1fff-44e8-b418-9a44007fc9a7-integ";
 
     private static Map<String, String> headers = new HashMap<>();
     static {
@@ -32,7 +32,7 @@ public class DeleteNameCollectionHttp {
     }
 
     public static void main(String...args) throws Exception {
-        String collectionId = "MMM3-V92";
+        String collectionId = "MMM7-3VY";
         CollectionResource collection = retrieveCollection(collectionId);
         List<String> nameIds = retrieveNameIds(collectionId);
 
