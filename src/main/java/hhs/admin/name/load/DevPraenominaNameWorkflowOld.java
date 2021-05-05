@@ -23,7 +23,7 @@ import org.familysearch.homelands.lib.common.util.JsonUtility;
  * @author wjohnson000
  *
  */
-public class DevPraenominaNameWorkflow {
+public class DevPraenominaNameWorkflowOld {
 
     protected static final String DEV_URL    = "http://admin.homelands.service.dev.us-east-1.dev.fslocal.org";
     protected static final String SESSION_ID = "44498db2-80c1-40c4-a6e8-f59861635685-integ";

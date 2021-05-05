@@ -22,7 +22,7 @@ public final class LoadHelper {
         this.headers = Collections.singletonMap(HttpHeaders.AUTHORIZATION, "Bearer " + sessionId);
     }
 
-    public JsonNode buildCollectionJson(
+    public static JsonNode buildCollectionJson(
            String  name,
            String  description,
            String  origLang,
@@ -57,7 +57,7 @@ public final class LoadHelper {
         return collNode;
     }
 
-    public JsonNode buildImportJson(
+    public static JsonNode buildImportJson(
            String importType,
            String currentState,
            String collectionId,
@@ -82,13 +82,13 @@ public final class LoadHelper {
 
     public JsonNode readCollection(String collectionId) {
         String url = makeUrl("collection", collectionId);
-        String body = SimpleHttpClient.doGetJSON(url, headers);
+        String body = SimpleHttpClient.doGetJSON(url, headers, true);
         return parseJson(body);
     }
 
     public String createCollection(JsonNode body) {
         String url = makeUrl("collection");
-        String location = SimpleHttpClient.doPostJson(url, body.toPrettyString(), headers);
+        String location = SimpleHttpClient.doPostJson(url, body.toPrettyString(), headers, true);
         if (location == null) {
             return null;
         } else {
@@ -99,13 +99,13 @@ public final class LoadHelper {
 
     public JsonNode readImport(String collectionId, String importId) {
         String url = makeUrl("collection", collectionId, "import", importId);
-        String body = SimpleHttpClient.doGetJSON(url, headers);
+        String body = SimpleHttpClient.doGetJSON(url, headers, true);
         return parseJson(body);
     }
 
     public String createImport(String collectionId, JsonNode body) {
         String url = makeUrl("collection", collectionId, "import");
-        String location = SimpleHttpClient.doPostJson(url, body.toPrettyString(), headers);
+        String location = SimpleHttpClient.doPostJson(url, body.toPrettyString(), headers, true);
         if (location == null) {
             return null;
         } else {
@@ -116,19 +116,19 @@ public final class LoadHelper {
 
     public JsonNode readImportSteps(String collectionId, String importId) {
         String url = makeUrl("collection", collectionId, "import", importId, "step");
-        String body = SimpleHttpClient.doGetJSON(url, headers);
+        String body = SimpleHttpClient.doGetJSON(url, headers, true);
         return parseJson(body);
     }
 
     public JsonNode readImportStep(String collectionId, String importId, String stepId) {
         String url = makeUrl("collection", collectionId, "import", importId, "step", stepId);
-        String body = SimpleHttpClient.doGetJSON(url, headers);
+        String body = SimpleHttpClient.doGetJSON(url, headers, true);
         return parseJson(body);
     }
 
     public String startStep(String collectionId, String importId, String stepName) {
         String url = makeUrl("collection", collectionId, "import", importId, stepName);
-        SimpleHttpClient.doPostJson(url, null, headers);
+        SimpleHttpClient.doPostJson(url, null, headers, true);
 
         JsonNode stepsNode = readImportSteps(collectionId, importId);
         List<JsonNode> steps = JsonUtility.getArrayValueAsNodes(stepsNode, "steps");
@@ -142,14 +142,14 @@ public final class LoadHelper {
 
     public JsonNode readRawFileList() {
         String url = makeUrl("collection", "datafile");
-        String body = SimpleHttpClient.doGetJSON(url, headers);
+        String body = SimpleHttpClient.doGetJSON(url, headers, true);
         return parseJson(body);
     }
 
     public void copyGeneratedFileToRaw(String collectionId, String importId, String stepId, String filename, String newFilename) {
         String url = makeUrl("collection", collectionId, "import", importId, "step", stepId, "file", filename, "copyToUnassigned");
         url += "?newFilename=" + newFilename.trim().replaceAll(" ", "%20");
-        SimpleHttpClient.doPostJson(url, null, headers);
+        SimpleHttpClient.doPostJson(url, null, headers, true);
     }
 
     String makeUrl(String... paths) {
