@@ -18,12 +18,12 @@ import org.familysearch.homelands.lib.common.util.JsonUtility;
  * <ul>
  *   <li>Create/Verify a collection</li>
  *   <li>Verify source file</li>
- *   <li>Create an import</li>
- *   <li>Start the import</li>
+ *   <li>Create an import (for raw-to-canonical)</li>
+ *   <li>Start the import step</li>
  *   <li>Copy file to RAW</li>
- *   <li>Create an import</li>
- *   <li>Start the import</li>
- *   <li>Start the variant update</li>
+ *   <li>Create an import (for canonical-load)</li>
+ *   <li>Start the import step</li>
+ *   <li>Start the variant update step</li>
  * </ul>
  * @author wjohnson000
  *
@@ -117,7 +117,7 @@ public abstract class BaseNameWorkflow {
                 System.out.println("Unable to get datafile list ...");
             } else {
                 System.out.println("Raw file count: " + files.length);
-                for ( String filename : config.getFilenames()) {
+                for (String filename : config.getFilenames()) {
                     boolean found = Arrays.stream(files).anyMatch(file -> file.equalsIgnoreCase(filename));
                     importOK |= found;
                     System.out.println("  Datafile '" + filename + "' found: " + found);
@@ -171,11 +171,11 @@ public abstract class BaseNameWorkflow {
 
         JsonNode stepNode = loadHelper.readImportStep(collectionId, import01Id, step01Id);
         files = JsonUtility.getArrayValue(stepNode, "files");
-        for (String file : files) {
-            if (file.endsWith(".csv")) {
-                String newFilename = "step-" + step01Id + "-" + file;
+        for (String filename : files) {
+            if (filename.endsWith(".csv")) {
+                String newFilename = "step-" + step01Id + "-" + filename;
                 System.out.println("NEW: " + newFilename);
-                loadHelper.copyGeneratedFileToRaw(collectionId, import01Id, step01Id, file, newFilename);
+                loadHelper.copyGeneratedFileToRaw(collectionId, import01Id, step01Id, filename, newFilename);
                 tempFilenames.add(newFilename);
             }
         }
@@ -190,7 +190,8 @@ public abstract class BaseNameWorkflow {
                 importOK = false;
                 System.out.println("Unable to get datafile list for newfilename ...");
             } else {
-                for ( String filename : tempFilenames) {
+                System.out.println("Raw file count: " + files.length);
+                for (String filename : tempFilenames) {
                     boolean found = Arrays.stream(files).anyMatch(file -> file.equalsIgnoreCase(filename));
                     importOK |= found;
                     System.out.println("  Datafile '" + filename + "' found: " + found);

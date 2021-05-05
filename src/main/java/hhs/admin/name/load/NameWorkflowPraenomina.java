@@ -27,7 +27,7 @@ public class NameWorkflowPraenomina extends BaseNameWorkflow {
         WorkflowConfig config = new WorkflowConfig()
                                       .setIsVerbose(true)
                                       .setIsProd(false)
-                                      .setSessionId("2f14aaa1-584b-49da-820e-110356ada495-integ")
+                                      .setSessionId("xxxxx-integ")
                                       .setImportType("ROC_NAME_ENGLISH")
                                       .setFilename("Names from Praenomin reviewed.xlsx");
         NameWorkflowPraenomina workflow = new NameWorkflowPraenomina(config);
