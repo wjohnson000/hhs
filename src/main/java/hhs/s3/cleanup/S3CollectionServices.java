@@ -64,6 +64,49 @@ public class S3CollectionServices {
         return new ArrayList<>(results);
     }
 
+    public List<String> getTestCollectionIds() {
+        Set<String>          collIdTest  = new TreeSet<>();
+        Map<String, Integer> collIdCount = new TreeMap<>();
+
+        ListObjectsRequest ListRequest =
+                new ListObjectsRequest()
+                       .withBucketName(bucketName)
+                       .withPrefix("collection")
+                       .withMaxKeys(1000);
+
+        boolean hasMore = true;
+        ObjectListing objListing = s3Client.listObjects(ListRequest);
+        while (hasMore) {
+            System.out.println("Next chunk size: " + objListing.getObjectSummaries().size() + " ... " + objListing.getNextMarker());
+
+            for (S3ObjectSummary fileSummary : objListing.getObjectSummaries()) {
+                if (fileSummary.getKey().startsWith("collection")) {
+                    String key = fileSummary.getKey().substring(11);
+                    int ndx = key.indexOf('/');
+                    if (ndx > 0) {
+                        key = key.substring(0, ndx);
+                        Integer count = collIdCount.getOrDefault(key, new Integer(0));
+                        collIdCount.put(key, count+1);
+
+                        if (fileSummary.getKey().contains("/test")) {
+                            collIdTest.add(key);
+                        }
+                    }
+                }
+            }
+
+            if (objListing.getNextMarker() == null  ||  objListing.getObjectSummaries().isEmpty()) {
+                hasMore = false;
+            } else {
+                ListRequest.setMarker(objListing.getNextMarker());
+                objListing = s3Client.listObjects(ListRequest);
+            }
+        }
+
+        collIdTest.removeIf(id -> collIdCount.getOrDefault(id, 0) > 9);
+        return new ArrayList<>(collIdTest);
+    }
+
     public List<S3File> getCollectionFiles(String collectionId) {
         List<S3File> results = new ArrayList<>();
 
