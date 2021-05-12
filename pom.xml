@@ -12,7 +12,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <hhs.version>0.0.1-SNAPSHOT</hhs.version>
         <has.version>0.0.1-SNAPSHOT</has.version>
         <hcs.version>0.0.1-SNAPSHOT</hcs.version>
         <hls.version>0.0.1-SNAPSHOT</hls.version>
@@ -74,22 +73,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.familysearch.hhs</groupId>
-            <artifactId>persistence</artifactId>
-            <version>${hhs.version}</version>
-            <exclusions>
-              <exclusion>
-                <groupId>com.codahale.metrics</groupId>
-                <artifactId>*</artifactId>
-              </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.familysearch.hhs</groupId>
-            <artifactId>service</artifactId>
-            <version>${hhs.version}</version>
         </dependency>
         <dependency>
             <groupId>org.familysearch.has</groupId>
