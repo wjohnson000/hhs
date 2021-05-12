@@ -1,7 +1,16 @@
 package hhs.admin.name.load;
 
 /**
- * Configuration for running a "Name" import.
+ * Configuration for running a "Name" import.  This defines the following parameters:
+ * <ul>
+ *   <li>isVerbose -- when set to "TRUE", it logs a lot of useful information</li>
+ *   <li>isProd -- when set to "TRUE", it runs against Production, otherwise it runs against Dev</li>
+ *   <li>sessionId -- a valid authorization token for either PROD or DEV</li>
+ *   <li>importType -- a valid import type, such as "ROC_NAME_ENGLISH" (see {@link ImportType} for values)</li>
+ *   <li>collectionId -- a pre-existing collection identifier if one already exists</li>
+ *   <li>filenames -- the files associated with this import</li>
+ * </ul>
+ * 
  * @author wjohnson000
  *
  */
