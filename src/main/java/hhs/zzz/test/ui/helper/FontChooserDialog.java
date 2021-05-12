@@ -76,7 +76,7 @@ public class FontChooserDialog extends JDialog {
 	JPanel jPanel2 = new JPanel();
 	JButton cancelButton = new JButton();
 	JButton acceptBtn = new JButton();
-	JList fontList = new JList();
+	JList<String> fontList = new JList<>();
 	JTextField sizeTF = new JTextField();
 	JLabel filler = new JLabel();
 	JTextArea sampleText = new JTextArea();

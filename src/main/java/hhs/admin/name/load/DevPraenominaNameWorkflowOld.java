@@ -64,7 +64,7 @@ public class DevPraenominaNameWorkflowOld {
 
     static void run01_createCollection() {
         if (collectionId == null) {
-            JsonNode collNode = loadHelper.buildCollectionJson("ROC Praenomina Names", "Praenomina names from the ROC missionaries", "en", null, 10, "ROC Missionaries", "Family Search", "LEASE");
+            JsonNode collNode = LoadHelper.buildCollectionJson("ROC Praenomina Names", "Praenomina names from the ROC missionaries", "en", null, 10, "ROC Missionaries", "Family Search", "LEASE");
             collectionId = loadHelper.createCollection(collNode);
         }
 
@@ -103,7 +103,7 @@ public class DevPraenominaNameWorkflowOld {
         }
 
         if (import01Id == null) {
-            JsonNode importNode = loadHelper.buildImportJson("ROC_NAME_ENGLISH", "RAW_FILE_UPLOADED", collectionId, datafileName);
+            JsonNode importNode = LoadHelper.buildImportJson("ROC_NAME_ENGLISH", "RAW_FILE_UPLOADED", collectionId, datafileName);
             import01Id = loadHelper.createImport(collectionId, importNode);
         }
 
@@ -201,7 +201,7 @@ public class DevPraenominaNameWorkflowOld {
         }
 
         if (import02Id == null) {
-            JsonNode importNode = loadHelper.buildImportJson("ROC_NAME_ENGLISH", "CANONICAL_FILE_UPLOADED", collectionId, newFilename);
+            JsonNode importNode = LoadHelper.buildImportJson("ROC_NAME_ENGLISH", "CANONICAL_FILE_UPLOADED", collectionId, newFilename);
             import02Id = loadHelper.createImport(collectionId, importNode);
         }
 

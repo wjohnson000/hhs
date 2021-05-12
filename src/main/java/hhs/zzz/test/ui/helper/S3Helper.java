@@ -3,14 +3,10 @@
  */
 package hhs.zzz.test.ui.helper;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import org.apache.commons.io.IOUtils;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -77,19 +73,6 @@ public class S3Helper {
             JOptionPane.showMessageDialog(null, "Unable to delete S3 data: " + ex.getMessage());
         }
         return true;
-    }
-
-    public List<FolderNode> getDetailsSaved() {
-        List<String> folderDetails = new ArrayList<>();
-
-        try {
-            List<String> s3Files = IOUtils.readLines(this.getClass().getResourceAsStream("/hhs-s3-files.txt"), StandardCharsets.UTF_8);
-            folderDetails.addAll(s3Files);
-        } catch (IOException ex) {
-            System.out.println("Unable to read files ... " + ex.getMessage());
-        }
-
-        return getDetails(folderDetails);
     }
 
     List<FolderNode> getDetails(List<String> s3Files) {

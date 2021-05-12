@@ -4,7 +4,6 @@
 package hhs.zzz.test.ui.helper;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 

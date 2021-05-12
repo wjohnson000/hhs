@@ -49,6 +49,7 @@ public class QueryByLatLong {
             for (Row row : rset) {
                 count++;
                 String repId = row.getString("rep_id");
+                // TODO: do something with "repId" ...
             }
             System.out.println("count: " + count);
 

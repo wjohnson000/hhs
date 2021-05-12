@@ -3,7 +3,6 @@ package hhs.utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;

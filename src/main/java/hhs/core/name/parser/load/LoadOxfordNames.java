@@ -31,7 +31,7 @@ public class LoadOxfordNames {
 
     private static String BASE_DIR = "C:/D-drive/homelands/names";
     private static String FIRST_FILE = "first_acref_9780198610601.xml";
-    private static String LAST_FILE  = "last_acref_9780195081374.xml";
+//    private static String LAST_FILE  = "last_acref_9780195081374.xml";
 
     private static Map<String, String> headers = Collections.singletonMap("Authorization", "Bearer " + "");
 

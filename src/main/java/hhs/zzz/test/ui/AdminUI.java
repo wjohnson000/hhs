@@ -116,7 +116,6 @@ public class AdminUI extends JFrame {
     protected void setupS3Tree() {
         s3Helper = new S3Helper();
         List<FolderNode> s3Nodes = s3Helper.getDetails();
-//        List<FolderNode> s3Nodes = s3Helper.getDetailsSaved();  // Pulls from a hard-coded list of keys
         treeModel = new CollectionTreeModel(s3Nodes);
         s3Tree = new JTree(treeModel);
         s3Tree.setCellRenderer(new S3TreeCellRenderer());
