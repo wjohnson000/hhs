@@ -1,6 +1,10 @@
-package hhs.admin.name.load;
+package hhs.admin.name.load.roc;
 
 import com.fasterxml.jackson.databind.JsonNode;
+
+import hhs.admin.name.load.BaseNameWorkflow;
+import hhs.admin.name.load.LoadHelper;
+import hhs.admin.name.load.WorkflowConfig;
 
 /**
  * An attempt to fully automate a ROC name load, first on DEV then on PROD (?).  The steps involved are:
@@ -17,9 +21,9 @@ import com.fasterxml.jackson.databind.JsonNode;
  * @author wjohnson000
  *
  */
-public class NameWorkflowPraenomina extends BaseNameWorkflow {
+public class Workflow02IrishNames extends BaseNameWorkflow {
 
-    public NameWorkflowPraenomina(WorkflowConfig config) {
+    public Workflow02IrishNames(WorkflowConfig config) {
         super(config);
     }
 
@@ -29,19 +33,19 @@ public class NameWorkflowPraenomina extends BaseNameWorkflow {
                                       .setIsProd(false)
                                       .setSessionId("xxxxx-integ")
                                       .setImportType("ROC_NAME_ENGLISH")
-                                      .setFilename("Names from Praenomin reviewed.xlsx");
-        NameWorkflowPraenomina workflow = new NameWorkflowPraenomina(config);
+                                      .setFilename("ROC-family-names-irish-final.xlsx");
+        Workflow02IrishNames workflow = new Workflow02IrishNames(config);
         workflow.runLoad();
     }
 
     @Override
-    JsonNode buildCollectionNode() {
+    public JsonNode buildCollectionNode() {
         return LoadHelper.buildCollectionJson(
-                   "ROC Praenomina Names",  // name
-                   "Praenomina names from the ROC missionaries",  // description
+                   "ROC Irish Names",  // name
+                   "Family-Names-From-the-Irish names from the ROC missionaries",  // description
                    "en",  // language
                    null,  // attribution not needed
-                   10,    // priority
+                   20,    // priority
                    "ROC Missionaries",  // source
                    "Family Search",  // partner
                    "LEASE");  // contract-type

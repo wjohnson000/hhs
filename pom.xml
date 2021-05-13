@@ -78,6 +78,16 @@
             <groupId>org.familysearch.has</groupId>
             <artifactId>has-service</artifactId>
             <version>${has.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.familysearch.cas</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.familysearch.cis</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.familysearch.has</groupId>

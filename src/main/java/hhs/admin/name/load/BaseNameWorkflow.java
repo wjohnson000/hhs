@@ -52,7 +52,7 @@ public abstract class BaseNameWorkflow {
         }
     }
 
-    abstract JsonNode buildCollectionNode();
+    public abstract JsonNode buildCollectionNode();
 
     public void runLoad() {
         run00_setup();
