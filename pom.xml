@@ -110,6 +110,11 @@
             <version>${hls.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.familysearch.hlib</groupId>
+            <artifactId>homelands-lib-common-web-async</artifactId>
+            <version>${hls.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-core</artifactId>
             <version>${com.amazonaws.version}</version>

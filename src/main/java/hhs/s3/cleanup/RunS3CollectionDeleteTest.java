@@ -18,7 +18,7 @@ public class RunS3CollectionDeleteTest {
 
         testCollIds.forEach(id -> {
             boolean delOK = thisCS.deleteCollection(id);
-            System.out.println("DELETE" + id + "? " + delOK);
+            System.out.println("DELETE " + id + "? " + delOK);
         });
 
         System.exit(0);
